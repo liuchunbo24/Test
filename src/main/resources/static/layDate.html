@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/jquery.min.js?v=1.11.2"></script>
+    <script src="js/js/laydate.js"></script>
+</head>
+<body>
+<div>
+    <h3>开始和结束的相互关联</h3>
+    开始日期：
+    <input class="laydate-icon" id="start" style="width:200px; margin-right:10px">
+    结束日期：
+    <input class="laydate-icon" id="end" style="width:200px">
+</div>
+<hr/>
+<div>
+    <h3>日历结构</h3>
+    日历插件：
+    <input class="laydate-icon" id="time" />
+</div>
+
+
+<script >
+    $(document).ready(function() {
+        laydate.skin("molv"); //设置皮肤
+        var start = {
+            elem: '#start',
+            format: 'YYYY/MM/DD hh:mm:ss',
+            min: laydate.now(), //设定最小日期为当前日期
+            max: '2099-12-31 23:59:59', //最大日期
+            istime: true,
+            istoday: false,
+            choose: function(datas) {
+                end.min = datas; //开始日选好后，重置结束日的最小日期
+            }
+        };
+        var end = {
+            elem: '#end',
+            format: 'YYYY/MM/DD hh:mm:ss',
+            min: laydate.now(),
+            max: '2099-12-31 23:59:59',
+            istime: true,
+            istoday: false,
+            choose: function(datas) {
+                start.max = datas; //结束日选好后，重置开始日的最大日期
+            }
+        };
+        laydate(start);
+        laydate(end);
+        var time = {
+            elem: '#time',
+            format: 'YYYY-MM-DD hh:mm:ss',
+            min: laydate.now(),
+            max: '2999-12-31 23:59:59',
+            istime: true, //是否显示时分秒
+            istoday: true, //是否显示【今天】的按钮
+            isclear: true, //是否显示【清空】的按钮
+            festival: true, //是否显示节日
+            start: laydate.now(0, "YYYY-MM-DD hh:mm:ss"), // 开始日期
+            fixed: false, // 是否固定在可视区域
+            zIndex: 10000, // css控制图层的遮罩效果（效果不明显）
+            choose: function(dates) { // 选择好日期的回调
+            }
+        }
+        laydate(time);
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /SpringbootDemo
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  thymeleaf:
+    prefix: classpath:/static/
+    suffix: .html
+    cache: false
